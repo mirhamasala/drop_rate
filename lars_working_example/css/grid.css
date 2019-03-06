@@ -1,0 +1,84 @@
+.results-wrapper {
+  display: grid;
+  grid-auto-rows: 200px;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 3px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.results-wrapper .result {
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  box-shadow: 0px 0px 10px rgba(1,1,1,0.2);
+  animation: 200ms slidedown;
+}
+
+.results-wrapper .result:hover .overlay {
+  opacity: 1;
+}
+
+.result .overlay {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(1,1,1,0.7);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  transition: opacity 300ms ease;
+}
+
+.result .overlay strong {
+  color: white;
+  text-shadow: 1px 1px 1px rgba(1,1,1,0.3);
+}
+
+.result .overlay .stars .fas {
+  color: var(--light-gray);
+  font-size: 12px;
+  flex: 0 0 17px;
+  transform: scale(1);
+  transition: transform 200ms ease;
+}
+
+.result .overlay .stars {
+  margin-top: 10px;
+  cursor: pointer;
+  display: flex;
+}
+
+.result .overlay .stars.rated .fas {
+  color: var(--gold);
+}
+
+.result .overlay .stars:hover .fas {
+  color: var(--gold);
+}
+
+.result .overlay .stars .fas:hover ~ .fas {
+  color: var(--light-gray);
+}
+
+.result .overlay .stars.rated .fas.active ~ .fas {
+  color: var(--light-gray);
+}
+
+.result .overlay .stars .fas:active {
+  transform: scale(1.3);
+}
+
+.result .overlay .remove {
+  color: var(--dark-red);
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+
