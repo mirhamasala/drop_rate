@@ -29,6 +29,11 @@ Everything is plain HTML/CSS/JS, total of 352 lines
 
 In terms of UX it doesn’t make a whole lot of sense, because I used the giphy API it would be better if an image preview was rendered instead of just a text-based list item. But the main point is to illustrate the techniques.
 
+## Look up
+
+- Attribute selectors
+- [CSS Forms](https://www.w3schools.com/css/css_form.asp)
+
 ## Resources
 
 - [Lars's Working Example](https://datene.github.io/droprate/index.html)
