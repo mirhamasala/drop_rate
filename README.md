@@ -33,6 +33,7 @@ In terms of UX it doesn’t make a whole lot of sense, because I used the giphy 
 
 - Attribute selectors
 - [CSS Forms](https://www.w3schools.com/css/css_form.asp)
+- [A Simple Guide to Destructuring and ES6 Spread Operator](https://codeburst.io/a-simple-guide-to-destructuring-and-es6-spread-operator-e02212af5831)
 
 ## Resources
 
