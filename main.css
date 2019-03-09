@@ -1,5 +1,10 @@
 :root {
-    --main-bg-color: #ffc107;
+    /* --main-bg-color: #ffc107; */
+    --main-bg-color: #9BD96A;
+    --second-color: #60A859;
+    --main-gray: #f7f7f7;
+    --main-black: #212121;
+    --main-white:white;
 }
 
 body {
@@ -9,22 +14,41 @@ body {
     background: var(--main-bg-color);
     font-family: 'helvetica neue';
     -webkit-font-smoothing: antialiased;
+    color: var(--main-black);
 }
 
-.search-form, h1 {
+.search-form {
     max-width: 400px;
-    margin: 50px auto;
-}
-
-h1 {
-    text-align: center;
-    font-weight: 400;
+    margin: 0 auto;
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 input {
+    background: var(--main-white);
     width: 100%;
     padding: 20px;
-    border: 10px solid #f7f7f7;
+    border: 10px solid var(--second-color);
     border-radius: 4px;
     font-size: 1.25rem;
+}
+
+input:focus {
+    outline-color: #C7F774;
+}
+
+.suggestions {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    list-style: none;
+}
+
+.suggestions li {
+    background: var(--main-white);
+    color: var(--main-black);
+    padding: 10px;
+    border-bottom: 1px solid var(--main-gray);
 }

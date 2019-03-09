@@ -30,10 +30,16 @@ function findMatches(foodToMatch, ketoFoods) {
 
 function displayMatches() {
     const matches = findMatches(this.value, ketoFoods);
-    return matches;
-    // console.log(matches);
+    const html = matches.map(food => {
+        return `
+        <li>${food}</li>
+        `;
+    }).join('');
+    suggestions.innerHTML = html;
 }
 
 const searchInput = document.querySelector('.search');
+const suggestions = document.querySelector('.suggestions');
 
+// searchInput.addEventListener("change", displayMatches);
 searchInput.addEventListener("keyup", displayMatches);
