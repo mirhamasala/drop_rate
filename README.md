@@ -13,15 +13,14 @@
 - Option to remove result
 - Option to leave rating on a result
 
-### First Challenge
+### Round 1: Make the Dropdown
 
-I’d start with just making the dropdown.
-
-See if you can make the dropdown display a set of random strings as a result.
-
-The dropdown should expand when there’s text inputted, the results should update on every keypress.
-
-You should be able to click a result. The dropdown should close when you click elsewhere on the page, the dropdown should open again with the last results when the cursor is again entered into the input
+- [x] See if you can make the dropdown display a set of random strings as a result
+- [x] The dropdown should expand when there’s text inputted
+- [x] The results should update on every keypress
+- [ ] You should be able to click a result
+- [ ] The dropdown should close when you click elsewhere on the page
+- [ ] The dropdown should open again with the last results when the cursor is again entered into the input
 
 ### Notes
 
@@ -34,7 +33,10 @@ In terms of UX it doesn’t make a whole lot of sense, because I used the giphy 
 - Attribute selectors
 - [CSS Forms](https://www.w3schools.com/css/css_form.asp)
 - [A Simple Guide to Destructuring and ES6 Spread Operator](https://codeburst.io/a-simple-guide-to-destructuring-and-es6-spread-operator-e02212af5831)
+- `suggestions li`
+- except `:first-child`, `:last-child`
 
 ## Resources
 
 - [Lars's Working Example](https://datene.github.io/droprate/index.html)
+- [JavaScript 30, Day 6 · Ajax Type Head](https://javascript30.com/)
