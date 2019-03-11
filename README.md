@@ -20,8 +20,8 @@
   - The dropdown expands also on "tab"
 - [x] The results should update on every keypress
 - [x] You should be able to click a result
-- [ ] The dropdown should close when you click elsewhere on the page
-- [ ] The dropdown should open again with the last results when the cursor is again entered into the input
+- [x] The dropdown should close when you click elsewhere on the page
+- [x] The dropdown should open again with the last results when the cursor is again entered into the input
 
 ### Notes
 

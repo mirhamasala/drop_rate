@@ -29,6 +29,7 @@ function findMatches(foodToMatch, ketoFoods) {
 }
 
 function displayMatches() {
+    suggestions.classList.remove("hide");
     const matches = findMatches(this.value, ketoFoods);
     const html = matches.map(food => {
         const regex = new RegExp(this.value, 'gi');
@@ -47,5 +48,6 @@ function hideMatches() {
 const searchInput = document.querySelector('.search');
 const suggestions = document.querySelector('.suggestions');
 
-// searchInput.addEventListener("change", displayMatches);
 searchInput.addEventListener("keyup", displayMatches);
+searchInput.addEventListener("focusin", displayMatches);
+searchInput.addEventListener("focusout", hideMatches);
