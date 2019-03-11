@@ -55,10 +55,12 @@ input:focus {
 
 .suggestions li:hover {
     background: var(--main-gray);
+    cursor: pointer;
 
 }
 .suggestions a {
     text-decoration: none;
+    color: var(--main-black);
 }
 
 .highlight {
