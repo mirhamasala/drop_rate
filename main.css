@@ -40,22 +40,25 @@ input:focus {
 }
 
 .suggestions {
-    display: flex;
-    flex-direction: column;
     width: 100%;
     margin: 0 auto;
+    padding: 0;
+    list-style: none;
 }
 
-.suggestions a {
+.suggestions li {
     background: var(--main-white);
     color: var(--main-black);
     padding: 10px;
     border-bottom: 1px solid var(--main-gray);
-    text-decoration: none;
 }
 
-.suggestions a:hover {
-    background-color: var(--main-gray);
+.suggestions li:hover {
+    background: var(--main-gray);
+
+}
+.suggestions a {
+    text-decoration: none;
 }
 
 .highlight {

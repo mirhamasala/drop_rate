@@ -34,10 +34,14 @@ function displayMatches() {
         const regex = new RegExp(this.value, 'gi');
         const foodName = food.replace(regex, `<span class="highlight">${this.value}</span>`);
         return `
-        <a href="#">${foodName}</a>
+        <li><a href="#">${foodName}</a></li>
         `;
     }).join('');
     suggestions.innerHTML = html;
+}
+
+function hideMatches() {
+    suggestions.classList.add("hide");
 }
 
 const searchInput = document.querySelector('.search');
