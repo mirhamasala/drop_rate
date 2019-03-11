@@ -31,8 +31,10 @@ function findMatches(foodToMatch, ketoFoods) {
 function displayMatches() {
     const matches = findMatches(this.value, ketoFoods);
     const html = matches.map(food => {
+        const regex = new RegExp(this.value, 'gi');
+        const foodName = food.replace(regex, `<span class="highlight">${this.value}</span>`);
         return `
-        <li>${food}</li>
+        <li>${foodName}</li>
         `;
     }).join('');
     suggestions.innerHTML = html;

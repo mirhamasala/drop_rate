@@ -1,6 +1,6 @@
 :root {
     /* --main-bg-color: #ffc107; */
-    --main-bg-color: #9BD96A;
+    --main-color: #9BD96A;
     --second-color: #60A859;
     --main-gray: #f7f7f7;
     --main-black: #212121;
@@ -11,7 +11,7 @@ body {
     min-height: 100vh;
     overflow: hidden;
     margin: 0;
-    background: var(--main-bg-color);
+    background: var(--main-color);
     font-family: 'helvetica neue';
     -webkit-font-smoothing: antialiased;
     color: var(--main-black);
@@ -51,4 +51,8 @@ input:focus {
     color: var(--main-black);
     padding: 10px;
     border-bottom: 1px solid var(--main-gray);
+}
+
+.highlight {
+    background-color: var(--main-color);
 }
