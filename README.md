@@ -17,8 +17,9 @@
 
 - [x] See if you can make the dropdown display a set of random strings as a result
 - [x] The dropdown should expand when there’s text inputted
+  - The dropdown expands also on "tab"
 - [x] The results should update on every keypress
-- [ ] You should be able to click a result
+- [x] You should be able to click a result
 - [ ] The dropdown should close when you click elsewhere on the page
 - [ ] The dropdown should open again with the last results when the cursor is again entered into the input
 

@@ -34,7 +34,7 @@ function displayMatches() {
         const regex = new RegExp(this.value, 'gi');
         const foodName = food.replace(regex, `<span class="highlight">${this.value}</span>`);
         return `
-        <li>${foodName}</li>
+        <a href="#">${foodName}</a>
         `;
     }).join('');
     suggestions.innerHTML = html;
