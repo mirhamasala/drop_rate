@@ -41,3 +41,4 @@ In terms of UX it doesn’t make a whole lot of sense, because I used the giphy 
 
 - [Lars's Working Example](https://datene.github.io/droprate/index.html)
 - [JavaScript 30, Day 6 · Ajax Type Head](https://javascript30.com/)
+- [Add an Emoji Favicon to your site!](https://dev.to/pickleat/add-an-emoji-favicon-to-your-site-co2)
