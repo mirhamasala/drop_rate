@@ -49,18 +49,18 @@ input:focus {
 .suggestions li {
     background: var(--main-white);
     color: var(--main-black);
-    padding: 10px;
     border-bottom: 1px solid var(--main-gray);
 }
 
-.suggestions li:hover {
-    background: var(--main-gray);
-    cursor: pointer;
-
-}
 .suggestions a {
-    text-decoration: none;
+    display: block;
+    padding: 10px;
     color: var(--main-black);
+    text-decoration: none;
+}
+
+.suggestions a:hover {
+    background: var(--main-gray);
 }
 
 .highlight {
