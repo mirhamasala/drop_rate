@@ -28,17 +28,21 @@ function findMatches(foodToMatch, ketoFoods) {
     })
 }
 
-function displayMatches() {
-    suggestions.classList.remove("hide");
-    const matches = findMatches(this.value, ketoFoods);
-    const html = matches.map(food => {
-        const regex = new RegExp(this.value, 'gi');
-        const foodName = food.replace(regex, `<span class="highlight">${this.value}</span>`);
-        return `
-        <li><a href="#">${foodName}</a></li>
-        `;
-    }).join('');
-    suggestions.innerHTML = html;
+function displayMatches(e) {
+    if(e.target.value === "") {
+        hideMatches();
+    } else {
+        suggestions.classList.remove("hide");
+        const matches = findMatches(this.value, ketoFoods);
+        const html = matches.map(food => {
+            const regex = new RegExp(this.value, 'gi');
+            const foodName = food.replace(regex, `<span class="highlight">${this.value}</span>`);
+            return `
+            <li><a href="#">${foodName}</a></li>
+            `;
+        }).join('');
+        suggestions.innerHTML = html;
+    }
 }
 
 function hideMatches() {
