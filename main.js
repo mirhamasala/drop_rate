@@ -42,7 +42,7 @@ function displayMatches() {
 }
 
 function hideMatches() {
-    suggestions.classList.add("hide");
+    setTimeout(function(){ suggestions.classList.add("hide"); }, 100);
 }
 
 const searchInput = document.querySelector('.search');
@@ -50,4 +50,4 @@ const suggestions = document.querySelector('.suggestions');
 
 searchInput.addEventListener("keyup", displayMatches);
 searchInput.addEventListener("focusin", displayMatches);
-searchInput.addEventListener("focusout", hideMatches);
+searchInput.addEventListener("blur", hideMatches);
