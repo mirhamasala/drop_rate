@@ -1,3 +1,25 @@
+const ketoFoods = [
+    "almonds",
+    "almond butter",
+    "almond milk",
+    "avocado",
+    "avocado oil",
+    "broccoli",
+    "cauliflower",
+    "chia seeds",
+    "coconut cream",
+    "coconut milk",
+    "coconut oil",
+    "flax seeds",
+    "grass-fed butter",
+    "hazelnuts",
+    "macadamias",
+    "macadamia butter",
+    "macadamia oil",
+    "olive oil",
+    "raw cacao powder",
+    "spinach"
+];
 
 // Close menu when you click anywhere else on the page
 // except the input and menu
