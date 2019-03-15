@@ -1,27 +1,5 @@
-// const ketoFoods = [
-//     "almonds",
-//     "almond butter",
-//     "almond milk",
-//     "avocado",
-//     "avocado oil",
-//     "broccoli",
-//     "cauliflower",
-//     "chia seeds",
-//     "coconut cream",
-//     "coconut milk",
-//     "coconut oil",
-//     "flax seeds",
-//     "grass-fed butter",
-//     "hazelnuts",
-//     "macadamias",
-//     "macadamia butter",
-//     "macadamia oil",
-//     "olive oil",
-//     "raw cacao powder",
-//     "spinach"
-// ];
-
 const ketoFoods = [];
+const newArray = [];
 
 // function getResults() {
 const url = 'http://www.omdbapi.com/?s=harry potter&apikey=adf1f2d7';
@@ -39,7 +17,6 @@ fetch(url)
 //         return food.match(regex);
 //     })
 // }
-const newArray = [];
 
 function displayMatches(e) {
     if(e.target.value === "") {
