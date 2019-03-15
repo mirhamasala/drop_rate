@@ -26,11 +26,11 @@ const ketoFoods = [];
 // function getResults() {
 const url = 'http://www.omdbapi.com/?s=harry potter&apikey=adf1f2d7';
 fetch(url)
-    .then(response => response.json())
-    .then(data => ketoFoods.push(...data.Search))
-    .catch(function(error) {
-        console.log(error);
-    })
+.then(response => response.json())
+.then(data => ketoFoods.push(...data.Search))
+.catch(function(error) {
+    console.log(error);
+})
 // }
 
 // function findMatches(foodToMatch, ketoFoods) {
@@ -39,6 +39,7 @@ fetch(url)
 //         return food.match(regex);
 //     })
 // }
+const newArray = [];
 
 function displayMatches(e) {
     if(e.target.value === "") {
@@ -47,17 +48,33 @@ function displayMatches(e) {
         suggestions.classList.remove("hide");
         const html = ketoFoods.map(food => {
             const regex = new RegExp(this.value, 'gi');
-            const foodName = food.Title.replace(regex, `<span data-image="${food.Poster}" class="highlight">${this.value}</span>`);
+            const foodName = food.Title.replace(regex, `<span class="highlight">${this.value}</span>`);
             return (`
-            <li><a href="#">${foodName}</a></li>
+            <li><a href="#" data-image="${food.Poster}">${foodName}</a></li>
             `);
         }).join('');
         suggestions.innerHTML = html;
+        const results = suggestions.querySelectorAll('li a');
+        showImages(results);
     }
 }
 
 function hideMatches() {
     setTimeout(function(){ suggestions.classList.add("hide"); }, 100);
+}
+
+function showImages(results) {
+    results.forEach(result => {
+        result.addEventListener("click", () => {
+            newArray.push(result);
+            const html = newArray.map(result => {
+                return (`
+                <img src="${result.dataset.image}">
+                `);
+            }).join('');
+            images.innerHTML = html;
+        })
+    })
 }
 
 const searchInput = document.querySelector('.search');
