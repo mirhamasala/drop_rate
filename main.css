@@ -24,9 +24,14 @@ body {
     align-items: center;
 }
 
+.search-results-wrapper {
+    width: 100%;
+    position: relative;
+}
+
 input {
     background: var(--main-white);
-    width: 100%;
+    width: calc(100% - 60px);
     padding: 20px;
     border: 10px solid var(--second-color);
     border-radius: 4px;
@@ -38,10 +43,14 @@ input:focus {
 }
 
 .suggestions {
+    position: absolute;
+    top: 83px;
     width: 100%;
     margin: 0 auto;
     padding: 0;
     list-style: none;
+    max-height: 214px;
+    overflow: scroll;
 }
 
 .suggestions li {
@@ -69,13 +78,13 @@ input:focus {
     display: none;
 }
 
-.images {
+#images {
     display: grid;
     grid-gap: 1px;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     margin: 40px;
 }
 
-.images > * {
+#images > * {
     width: 100%;
 }

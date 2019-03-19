@@ -1,63 +1,86 @@
-const ketoFoods = [];
-const newArray = [];
+const searchInput = document.querySelector('#search');
+const suggestions = document.querySelector('.suggestions');
+const images = document.querySelector('#images');
+let tag = "";
+const myCollection = [];
 
-// function getResults() {
-const url = 'http://www.omdbapi.com/?s=harry potter&apikey=adf1f2d7';
-fetch(url)
-.then(response => response.json())
-.then(data => ketoFoods.push(...data.Search))
-.catch(function(error) {
-    console.log(error);
-})
-// }
-
-// function findMatches(foodToMatch, ketoFoods) {
-//     const regex = new RegExp(foodToMatch, 'gi');
-//     return ketoFoods.filter(food => {
-//         return food.match(regex);
-//     })
-// }
-
-function displayMatches(e) {
-    if(e.target.value === "") {
-        hideMatches();
-    } else {
-        suggestions.classList.remove("hide");
-        const html = ketoFoods.map(food => {
-            const regex = new RegExp(this.value, 'gi');
-            const foodName = food.Title.replace(regex, `<span class="highlight">${this.value}</span>`);
-            return (`
-            <li><a href="#" data-image="${food.Poster}">${foodName}</a></li>
-            `);
-        }).join('');
-        suggestions.innerHTML = html;
-        const results = suggestions.querySelectorAll('li a');
-        showImages(results);
-    }
-}
-
-function hideMatches() {
-    setTimeout(function(){ suggestions.classList.add("hide"); }, 100);
-}
-
-function showImages(results) {
-    results.forEach(result => {
-        result.addEventListener("click", () => {
-            newArray.push(result);
-            const html = newArray.map(result => {
-                return (`
-                <img src="${result.dataset.image}">
-                `);
-            }).join('');
-            images.innerHTML = html;
-        })
+// GETS DATA FROM THE API
+function getResults(url) {
+    fetch(url)
+    .then(response => response.json())
+    .then(processResult)
+    .catch(function(error) {
+        console.log(error);
     })
 }
 
-const searchInput = document.querySelector('.search');
-const suggestions = document.querySelector('.suggestions');
-const images = document.querySelector('.images');
+// RENDERS AN ITEM TO THE PAGE
+function renderResult(item) {
+    const regex = new RegExp(tag, 'gi');
+    const itemName = item.Title.replace(regex, `<span class="highlight">${tag}</span>`);
+    return (`
+        <li><a href="#" data-image="${item.Poster}" data-item='${JSON.stringify(item)}'>${itemName}</a></li>
+        `);
+}
 
-searchInput.addEventListener("keyup", displayMatches);
-searchInput.addEventListener("focusin", displayMatches);
-searchInput.addEventListener("blur", hideMatches);
+// ATTACH EVENT LISTENER TO NEWLY RENDERED ITEM
+function attachEventListenersToResults() {
+    const results = suggestions.querySelectorAll('li a');
+    results.forEach(result => {
+        result.addEventListener("click", addToCollection);
+    })
+}
+
+// HIDE RESULTS LIST
+function hideResults() {
+    setTimeout(function(){ suggestions.classList.add("hide"); }, 200);
+}
+
+// SHOW RESULTS LIST
+function showResults() {
+    suggestions.classList.remove("hide");
+}
+
+//// EVENT HANDLERS
+
+// ADD CLICKED ITEM TO COLLECTION CONST
+function addToCollection(event) {
+    event.preventDefault();
+    const item = JSON.parse(event.currentTarget.dataset.item);
+    myCollection.push(item);
+    const html = myCollection.map(result => {
+        return (`
+            <img src="${item.Poster}">
+            `);
+    }).join('');
+    images.innerHTML = html;
+}
+
+// PROCESS API RESPONSE
+function processResult(data) {
+    if(data.Response != "True") {
+        return;
+    }
+    suggestions.innerHTML = "";
+    data.Search.forEach((item) => {
+        suggestions.insertAdjacentHTML('beforeend', renderResult(item));
+    })
+    attachEventListenersToResults();
+}
+
+// CALL API ON KEYUP SEARCH INPUT
+function handleKeyUp(event) {
+    tag = event.currentTarget.value;
+    if(tag === "") {
+        hideResults();
+        return;
+    }
+    const url = `https://www.omdbapi.com/?s=${tag}&apikey=adf1f2d7`;
+    getResults(url);
+}
+
+//// EVENT LISTENERS
+
+searchInput.addEventListener("keyup", handleKeyUp);
+searchInput.addEventListener("focusin", showResults);
+searchInput.addEventListener("blur", hideResults);
