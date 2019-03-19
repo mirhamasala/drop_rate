@@ -42,6 +42,8 @@ input:focus {
     margin: 0 auto;
     padding: 0;
     list-style: none;
+    max-height: 214px;
+    overflow: scroll;
 }
 
 .suggestions li {
