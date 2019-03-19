@@ -28,34 +28,40 @@ function displayMatches(event) {
         hideMatches();
     } else {
         suggestions.classList.remove("hide");
-        const html = items.map(item => {
-            const regex = new RegExp(this.value, 'gi');
-            const itemName = item.Title.replace(regex, `<span class="highlight">${this.value}</span>`);
-            return (`
-                <li><a href="#" data-image="${item.Poster}">${itemName}</a></li>
-                `);
-        }).join('');
-        suggestions.innerHTML = html;
-        showImages();
+        suggestions.innerHTML = renderResults(event.currentTarget.value);
+        attachEventListenersToResults();
     }
+}
+
+function renderResults(inputValue) {
+    const html = items.map(item => {
+        const regex = new RegExp(inputValue, 'gi');
+        const itemName = item.Title.replace(regex, `<span class="highlight">${inputValue}</span>`);
+        return (`
+            <li><a href="#" data-image="${item.Poster}">${itemName}</a></li>
+            `);
+    }).join('');
 }
 
 function hideMatches() {
     setTimeout(function(){ suggestions.classList.add("hide"); }, 200);
 }
 
-function showImages() {
+function addToCollection(event) {
+    event.preventDefault();
+    mySelection.push(result);
+    const html = mySelection.map(result => {
+        return (`
+            <img src="${result.dataset.image}">
+            `);
+    }).join('');
+    images.innerHTML = html;
+}
+
+function attachEventListenersToResults() {
     const results = suggestions.querySelectorAll('li a');
     results.forEach(result => {
-        result.addEventListener("click", () => {
-            mySelection.push(result);
-            const html = mySelection.map(result => {
-                return (`
-                    <img src="${result.dataset.image}">
-                    `);
-            }).join('');
-            images.innerHTML = html;
-        })
+        result.addEventListener("click", addToCollection);
     })
 }
 
