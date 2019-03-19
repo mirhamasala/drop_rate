@@ -42,7 +42,7 @@ function displayMatches(event) {
 }
 
 function hideMatches() {
-    setTimeout(function(){ suggestions.classList.add("hide"); }, 100);
+    setTimeout(function(){ suggestions.classList.add("hide"); }, 400);
 }
 
 function showImages(results) {
