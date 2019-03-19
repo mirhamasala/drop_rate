@@ -2,7 +2,7 @@ const ketoFoods = [];
 const newArray = [];
 
 // function getResults() {
-const url = 'http://www.omdbapi.com/?s=harry potter&apikey=adf1f2d7';
+const url = 'https://www.omdbapi.com/?s=harry potter&apikey=adf1f2d7';
 fetch(url)
 .then(response => response.json())
 .then(data => ketoFoods.push(...data.Search))
