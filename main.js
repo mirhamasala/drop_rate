@@ -36,8 +36,7 @@ function displayMatches(event) {
                 `);
         }).join('');
         suggestions.innerHTML = html;
-        const results = suggestions.querySelectorAll('li a');
-        showImages(results);
+        showImages();
     }
 }
 
@@ -45,7 +44,8 @@ function hideMatches() {
     setTimeout(function(){ suggestions.classList.add("hide"); }, 200);
 }
 
-function showImages(results) {
+function showImages() {
+    const results = suggestions.querySelectorAll('li a');
     results.forEach(result => {
         result.addEventListener("click", () => {
             mySelection.push(result);
