@@ -21,8 +21,8 @@ function findMatches(itemToMatch, items) {
     })
 }
 
-function displayMatches(e) {
-    if(e.target.value === "") {
+function displayMatches(event) {
+    if(event.target.value === "") {
         hideMatches();
     } else {
         getResults();
