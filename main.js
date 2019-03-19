@@ -4,6 +4,8 @@ const images = document.querySelector('.images');
 const url = 'https://www.omdbapi.com/?s=harry potter&apikey=adf1f2d7';
 const items = [];
 const newArray = [];
+getResults();
+
 
 function getResults() {
     fetch(url)
@@ -25,7 +27,6 @@ function displayMatches(event) {
     if(event.target.value === "") {
         hideMatches();
     } else {
-        getResults();
         suggestions.classList.remove("hide");
         const html = items.map(item => {
             const regex = new RegExp(this.value, 'gi');
