@@ -1,7 +1,9 @@
+const searchInput = document.querySelector('.search');
+const suggestions = document.querySelector('.suggestions');
+const images = document.querySelector('.images');
+const url = 'https://www.omdbapi.com/?s=harry potter&apikey=adf1f2d7';
 const items = [];
 const newArray = [];
-const url = 'https://www.omdbapi.com/?s=harry potter&apikey=adf1f2d7';
-
 
 function getResults() {
     fetch(url)
@@ -23,6 +25,7 @@ function displayMatches(e) {
     if(e.target.value === "") {
         hideMatches();
     } else {
+        getResults();
         suggestions.classList.remove("hide");
         const html = items.map(item => {
             const regex = new RegExp(this.value, 'gi');
@@ -54,10 +57,6 @@ function showImages(results) {
         })
     })
 }
-
-const searchInput = document.querySelector('.search');
-const suggestions = document.querySelector('.suggestions');
-const images = document.querySelector('.images');
 
 searchInput.addEventListener("keyup", displayMatches);
 searchInput.addEventListener("focusin", displayMatches);
