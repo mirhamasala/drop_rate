@@ -1,22 +1,23 @@
 const ketoFoods = [];
 const newArray = [];
-
-// function getResults() {
 const url = 'https://www.omdbapi.com/?s=harry potter&apikey=adf1f2d7';
-fetch(url)
-.then(response => response.json())
-.then(data => ketoFoods.push(...data.Search))
-.catch(function(error) {
-    console.log(error);
-})
-// }
 
-// function findMatches(foodToMatch, ketoFoods) {
-//     const regex = new RegExp(foodToMatch, 'gi');
-//     return ketoFoods.filter(food => {
-//         return food.match(regex);
-//     })
-// }
+
+function getResults() {
+    fetch(url)
+    .then(response => response.json())
+    .then(data => ketoFoods.push(...data.Search))
+    .catch(function(error) {
+        console.log(error);
+    })
+}
+
+function findMatches(foodToMatch, ketoFoods) {
+    const regex = new RegExp(foodToMatch, 'gi');
+    return ketoFoods.filter(food => {
+        return food.match(regex);
+    })
+}
 
 function displayMatches(e) {
     if(e.target.value === "") {
@@ -27,8 +28,8 @@ function displayMatches(e) {
             const regex = new RegExp(this.value, 'gi');
             const foodName = food.Title.replace(regex, `<span class="highlight">${this.value}</span>`);
             return (`
-            <li><a href="#" data-image="${food.Poster}">${foodName}</a></li>
-            `);
+                <li><a href="#" data-image="${food.Poster}">${foodName}</a></li>
+                `);
         }).join('');
         suggestions.innerHTML = html;
         const results = suggestions.querySelectorAll('li a');
@@ -46,8 +47,8 @@ function showImages(results) {
             newArray.push(result);
             const html = newArray.map(result => {
                 return (`
-                <img src="${result.dataset.image}">
-                `);
+                    <img src="${result.dataset.image}">
+                    `);
             }).join('');
             images.innerHTML = html;
         })
