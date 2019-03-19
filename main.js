@@ -1,4 +1,4 @@
-const searchInput = document.querySelector('.search');
+const searchInput = document.querySelector('#search');
 const suggestions = document.querySelector('.suggestions');
 const images = document.querySelector('.images');
 const url = 'https://www.omdbapi.com/?s=harry potter&apikey=adf1f2d7';
