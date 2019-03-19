@@ -1,9 +1,9 @@
 const searchInput = document.querySelector('#search');
 const suggestions = document.querySelector('.suggestions');
-const images = document.querySelector('.images');
+const images = document.querySelector('#images');
 const url = 'https://www.omdbapi.com/?s=harry potter&apikey=adf1f2d7';
 const items = [];
-const newArray = [];
+const mySelection = [];
 getResults();
 
 
@@ -48,8 +48,8 @@ function hideMatches() {
 function showImages(results) {
     results.forEach(result => {
         result.addEventListener("click", () => {
-            newArray.push(result);
-            const html = newArray.map(result => {
+            mySelection.push(result);
+            const html = mySelection.map(result => {
                 return (`
                     <img src="${result.dataset.image}">
                     `);

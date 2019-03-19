@@ -71,13 +71,13 @@ input:focus {
     display: none;
 }
 
-.images {
+#images {
     display: grid;
     grid-gap: 1px;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     margin: 40px;
 }
 
-.images > * {
+#images > * {
     width: 100%;
 }
