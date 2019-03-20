@@ -33,7 +33,7 @@ function displayMatches(event) {
 
 function renderResults(inputValue) {
     const matches = findMatches(inputValue, items);
-        const html = matches.map(item => {
+        return matches.map(item => {
             const regex = new RegExp(inputValue, 'gi');
             const itemName = item.name.replace(regex, `<span class="highlight">${inputValue}</span>`);
         return (`
