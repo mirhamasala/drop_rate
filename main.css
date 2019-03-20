@@ -39,6 +39,8 @@ input:focus {
 
 .suggestions {
     width: 100%;
+    max-height: 200px;
+    overflow: scroll;
     margin: 0 auto;
     padding: 0;
     list-style: none;
@@ -69,13 +71,14 @@ input:focus {
     display: none;
 }
 
-.images {
+#ketomojis {
     display: grid;
     grid-gap: 1px;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     margin: 40px;
 }
 
-.images > * {
-    width: 100%;
+#ketomojis > * {
+    font-size: 50px;
+    text-align: center;
 }

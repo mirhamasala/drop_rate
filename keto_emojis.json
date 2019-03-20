@@ -1,0 +1,34 @@
+[
+    {
+        "name": "avocado",
+        "code": "&#x1F951;"
+    },
+    {
+        "name": "bacon",
+        "code": "&#x1F953;"
+    },
+    {
+        "name": "broccoli",
+        "code": "&#x1F966;"
+    },
+    {
+        "name": "coconut",
+        "code": "&#x1F965;"
+    },
+    {
+        "name": "eggs",
+        "code": "&#x1F95A;"
+    },
+    {
+        "name": "matcha",
+        "code": "&#x1F375;"
+    },
+    {
+        "name": "meat",
+        "code": "&#x1F969;"
+    },
+    {
+        "name": "salad",
+        "code": "&#x1F957;"
+    }
+]
