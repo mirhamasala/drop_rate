@@ -1,62 +1,87 @@
-const ketoFoods = [];
-const newArray = [];
+const searchInput = document.querySelector('.search');
+const suggestions = document.querySelector('.suggestions');
+const emojis = document.querySelector('.ketomojis');
+const items = [];
+const mySelection = [];
+getResults();
 
-// function getResults() {
-const url = 'http://www.omdbapi.com/?s=harry potter&apikey=adf1f2d7';
-fetch(url)
-.then(response => response.json())
-.then(data => ketoFoods.push(...data.Search))
-.catch(function(error) {
-    console.log(error);
-})
-// }
+function getResults() {
+fetch("keto_emojis.json")
+    .then(response => response.json())
+    .then(data => items.push(...data))
+    .catch(function(error) {
+        console.log(error);
+    })
+}
 
-// function findMatches(foodToMatch, ketoFoods) {
-//     const regex = new RegExp(foodToMatch, 'gi');
-//     return ketoFoods.filter(food => {
-//         return food.match(regex);
-//     })
-// }
+function findMatches(itemToMatch, items) {
+    const regex = new RegExp(itemToMatch, 'gi');
+    return items.filter(item => {
+        return item.name.match(regex);
+    })
+}
 
-function displayMatches(e) {
-    if(e.target.value === "") {
+function displayMatches(event) {
+    if (this.value === "") {
         hideMatches();
     } else {
         suggestions.classList.remove("hide");
-        const html = ketoFoods.map(food => {
+        const matches = findMatches(this.value, items);
+        const html = matches.map(item => {
             const regex = new RegExp(this.value, 'gi');
-            const foodName = food.Title.replace(regex, `<span class="highlight">${this.value}</span>`);
-            return (`
-            <li><a href="#" data-image="${food.Poster}">${foodName}</a></li>
+            const itemName = item.name.replace(regex, `<span class="highlight">${this.value}</span>`);
+        return (`
+                <li><a href="#" data-code="${item.code}">${itemName}</a></li>
             `);
         }).join('');
         suggestions.innerHTML = html;
         const results = suggestions.querySelectorAll('li a');
-        showImages(results);
+        displayEmojis(results);
     }
 }
+
+// function renderResults(matches) {
+
+// }
 
 function hideMatches() {
     setTimeout(function(){ suggestions.classList.add("hide"); }, 100);
 }
 
-function showImages(results) {
+// function addToCollection(result) {
+//     // event.preventDefault();
+//     mySelection.push(result);
+//     console.log(mySelection);
+//     const html = mySelection.map(result => {
+//         return (`
+//             <p>${result.data.code}</p>
+//         `);
+//     }).join('');
+//     emojis.innerHTML = html;
+// }
+
+// function attachEventListenersToResults() {
+//     const results = suggestions.querySelectorAll('li a');
+//     results.forEach(result => {
+//         console.log(result.dataset.code);
+//         // result.addEventListener("click", addToCollection);
+//     })
+// }
+
+function displayEmojis(results) {
+    // const results = suggestions.querySelectorAll('li a');
     results.forEach(result => {
-        result.addEventListener("click", () => {
-            newArray.push(result);
-            const html = newArray.map(result => {
-                return (`
-                <img src="${result.dataset.image}">
-                `);
-            }).join('');
-            images.innerHTML = html;
-        })
+            result.addEventListener("click", () => {
+                mySelection.push(result);
+                const html = mySelection.map(result => {
+                    return (`
+                        <p>${result.dataset.code}</p>
+                    `);
+                }).join('');
+                emojis.innerHTML = html;
+            })
     })
 }
-
-const searchInput = document.querySelector('.search');
-const suggestions = document.querySelector('.suggestions');
-const images = document.querySelector('.images');
 
 searchInput.addEventListener("keyup", displayMatches);
 searchInput.addEventListener("focusin", displayMatches);
