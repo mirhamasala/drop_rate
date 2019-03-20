@@ -88,3 +88,4 @@ In terms of UX it doesn’t make a whole lot of sense, because I used the giphy 
 - [What is the difference between `auto-fill` and `auto-fit`](https://stackoverflow.com/questions/46226539/what-is-the-difference-between-auto-fill-and-auto-fit)
 - [A JavaScript-Free Frontend](https://dev.to/winduptoy/a-javascript-free-frontend-2d3e)
 - [Storing Objects in HTML5 localStorage](https://stackoverflow.com/questions/2010892/storing-objects-in-html5-localstorage)
+- [Fetching Local JSON](https://stackoverflow.com/questions/49481934/fetching-local-json)
