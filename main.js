@@ -34,13 +34,13 @@ function displayMatches(event) {
 }
 
 function renderResults(inputValue) {
-    const html = items.map(item => {
+    return items.map(item => {
         const regex = new RegExp(inputValue, 'gi');
         const itemName = item.Title.replace(regex, `<span class="highlight">${inputValue}</span>`);
         return (`
-            <li><a href="#" data-image="${item.Poster}">${itemName}</a></li>
+            <li><a href="#" data-image="${item.Poster}" data-item='${JSON.stringify(item)}'>${itemName}</a></li>
             `);
-    }).join('');
+    }).join('')
 }
 
 function hideMatches() {
@@ -49,10 +49,11 @@ function hideMatches() {
 
 function addToCollection(event) {
     event.preventDefault();
+    const result = JSON.parse(event.currentTarget.dataset.item);
     mySelection.push(result);
     const html = mySelection.map(result => {
         return (`
-            <img src="${result.dataset.image}">
+            <img src="${result.Poster}">
             `);
     }).join('');
     images.innerHTML = html;
