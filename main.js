@@ -33,13 +33,13 @@ function displayMatches(event) {
 
 function renderResults(inputValue) {
     const matches = findMatches(inputValue, items);
-        return matches.map(item => {
-            const regex = new RegExp(inputValue, 'gi');
-            const itemName = item.name.replace(regex, `<span class="highlight">${inputValue}</span>`);
+    return matches.map(item => {
+        const regex = new RegExp(inputValue, 'gi');
+        const itemName = item.name.replace(regex, `<span class="highlight">${inputValue}</span>`);
         return (`
-                <li><a href="#" data-code="${item.code}">${itemName}</a></li>
-            `);
-        }).join('');
+        <li><a href="#" data-code="${item.code}">${itemName}</a></li>
+        `);
+    }).join('');
 }
 
 function hideMatches() {
@@ -48,10 +48,10 @@ function hideMatches() {
 
 function addToCollection(event) {
     event.preventDefault();
-    mySelection.push(result);
+    mySelection.push(event.currentTarget);
     const html = mySelection.map(result => {
         return (`
-            <p>${result.dataset.code}</p>
+        <p>${result.dataset.code}</p>
         `);
     }).join('');
     emojis.innerHTML = html;
