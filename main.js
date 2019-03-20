@@ -6,7 +6,7 @@ const mySelection = [];
 getResults();
 
 function getResults() {
-fetch("keto_emojis.json")
+    fetch("keto_emojis.json")
     .then(response => response.json())
     .then(data => items.push(...data))
     .catch(function(error) {
@@ -22,64 +22,45 @@ function findMatches(itemToMatch, items) {
 }
 
 function displayMatches(event) {
-    if (this.value === "") {
+    if (event.target.value === "") {
         hideMatches();
     } else {
         suggestions.classList.remove("hide");
-        const matches = findMatches(this.value, items);
-        const html = matches.map(item => {
-            const regex = new RegExp(this.value, 'gi');
-            const itemName = item.name.replace(regex, `<span class="highlight">${this.value}</span>`);
-        return (`
-                <li><a href="#" data-code="${item.code}">${itemName}</a></li>
-            `);
-        }).join('');
-        suggestions.innerHTML = html;
-        const results = suggestions.querySelectorAll('li a');
-        displayEmojis(results);
+        suggestions.innerHTML = renderResults(event.currentTarget.value);
+        attachEventListenersToResults();
     }
 }
 
-// function renderResults(matches) {
-
-// }
-
-function hideMatches() {
-    setTimeout(function(){ suggestions.classList.add("hide"); }, 100);
+function renderResults(inputValue) {
+    const matches = findMatches(inputValue, items);
+    return matches.map(item => {
+        const regex = new RegExp(inputValue, 'gi');
+        const itemName = item.name.replace(regex, `<span class="highlight">${inputValue}</span>`);
+        return (`
+        <li><a href="#" data-code="${item.code}">${itemName}</a></li>
+        `);
+    }).join('');
 }
 
-// function addToCollection(result) {
-//     // event.preventDefault();
-//     mySelection.push(result);
-//     console.log(mySelection);
-//     const html = mySelection.map(result => {
-//         return (`
-//             <p>${result.data.code}</p>
-//         `);
-//     }).join('');
-//     emojis.innerHTML = html;
-// }
+function hideMatches() {
+    setTimeout(function(){ suggestions.classList.add("hide"); }, 200);
+}
 
-// function attachEventListenersToResults() {
-//     const results = suggestions.querySelectorAll('li a');
-//     results.forEach(result => {
-//         console.log(result.dataset.code);
-//         // result.addEventListener("click", addToCollection);
-//     })
-// }
+function addToCollection(event) {
+    event.preventDefault();
+    mySelection.push(event.currentTarget);
+    const html = mySelection.map(result => {
+        return (`
+        <p>${result.dataset.code}</p>
+        `);
+    }).join('');
+    emojis.innerHTML = html;
+}
 
-function displayEmojis(results) {
-    // const results = suggestions.querySelectorAll('li a');
+function attachEventListenersToResults() {
+    const results = suggestions.querySelectorAll('li a');
     results.forEach(result => {
-            result.addEventListener("click", () => {
-                mySelection.push(result);
-                const html = mySelection.map(result => {
-                    return (`
-                        <p>${result.dataset.code}</p>
-                    `);
-                }).join('');
-                emojis.innerHTML = html;
-            })
+        result.addEventListener("click", addToCollection);
     })
 }
 
