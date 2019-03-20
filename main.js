@@ -1,6 +1,6 @@
-const searchInput = document.querySelector('.search');
+const searchInput = document.querySelector('#search');
 const suggestions = document.querySelector('.suggestions');
-const emojis = document.querySelector('.ketomojis');
+const emojis = document.querySelector('#ketomojis');
 const items = [];
 const mySelection = [];
 getResults();
