@@ -34,13 +34,18 @@ Basically what I mean is that you can see there’s more content, so for example
 - [x] Display item on the page
 - [ ] Store items in localstorage
 - [ ] Load items from localstorage on pageload
-- [ ] Display items in grid
+- [x] Display items in grid
 
 It doesn’t really matter which API you use, you can also use a recipes API if you’d like, whatever works and makes sense for you.
 
 This is a list of public API’s, you might know it already <https://github.com/toddmotto/public-apis>
 
 Although, be careful with any API keys that have no domain restrictions. The giphy API key I had to include in my project is tricky, people can take it but it will just stop working if it’s abused. For some services it will start generating costs.
+
+### Round 3
+
+- [ ] (Styling and presentation) You can also render the emoji itself in the dropdown suggestions, then when you’re showing it on the page it might be nice to have a white background for where you render the emoji’s and increase the font size a bit.
+- [ ] localstorage
 
 ### Q & A
 
@@ -58,8 +63,8 @@ The flow would be:
 - [x] on each keypress => ping the API
 - [x] render the results in the dropdown
 - [x] add event listeners to the individual results
-- [ ] when clicking a result that result should be added to a dataset
-- [ ] whenever a result is added to the dataset, call a method that re-renders all the elements in the dataset. In my case these are the giphies in the grid
+- [x] when clicking a result that result should be added to a dataset
+- [x] whenever a result is added to the dataset, call a method that re-renders all the elements in the dataset. In my case these are the giphies in the grid
 - [ ] update the dataset in local storage
 
 You’re working with the `ketoFoods` constant, you can use a spread operator to push the results into the constant `ketoFoods.push(...data.Search)`
@@ -79,6 +84,36 @@ In terms of UX it doesn’t make a whole lot of sense, because I used the giphy 
 - [A Simple Guide to Destructuring and ES6 Spread Operator](https://codeburst.io/a-simple-guide-to-destructuring-and-es6-spread-operator-e02212af5831)
 - `suggestions li`
 - except `:first-child`, `:last-child`
+
+## Explanations
+
+### Difference between `event.target` and `this` keyword
+
+Events can be attached to any element. However, they also apply to any elements within said object.
+
+this is the element that the event is bound to.  e.target is the element that was actually clicked.
+
+For example:
+
+```html
+<div>
+  <p>
+    <strong><span>click me</span></strong>
+  </p>
+</div>
+
+<script>
+$("div").click(function(e) {
+  // If you click the text "click me":
+  // e.target will be the span
+  // this will be the div
+});
+</script>
+```
+
+**Note:** Lars, please don't freak out about the jQuery example.
+
+**Source:** [Difference between event.target and this keyword?](https://stackoverflow.com/questions/2654141/jquery-difference-between-event-target-and-this-keyword)
 
 ## Resources
 
