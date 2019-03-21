@@ -21,12 +21,12 @@ function findMatches(itemToMatch, items) {
     })
 }
 
-function displayMatches(event) {
-    if (event.target.value === "") {
+function displayMatches() {
+    if (this.value === "") {
         hideMatches();
     } else {
         suggestions.classList.remove("hide");
-        suggestions.innerHTML = renderResults(event.currentTarget.value);
+        suggestions.innerHTML = renderResults(this.value);
         attachEventListenersToResults();
     }
 }
@@ -46,9 +46,9 @@ function hideMatches() {
     setTimeout(function(){ suggestions.classList.add("hide"); }, 200);
 }
 
-function addToCollection(event) {
+function addToCollection() {
     event.preventDefault();
-    mySelection.push(event.currentTarget);
+    mySelection.push(this);
     const html = mySelection.map(result => {
         return (`
         <p>${result.dataset.code}</p>
