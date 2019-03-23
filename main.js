@@ -2,7 +2,7 @@ const searchInput = document.querySelector('#search');
 const suggestions = document.querySelector('.suggestions');
 const emojis = document.querySelector('#ketomojis');
 const items = [];
-const mySelection = [];
+const selectedItems = JSON.parse(localStorage.getItem('selectedItems')) || [];
 getResults();
 
 function getResults() {
@@ -46,24 +46,33 @@ function hideMatches() {
     setTimeout(function(){ suggestions.classList.add("hide"); }, 200);
 }
 
-function addToCollection() {
-    event.preventDefault();
-    mySelection.push(this);
-    const html = mySelection.map(result => {
+function addItems() {
+    const item = { text: this };
+    selectedItems.push(item);
+
+    displayEmojis(selectedItems);
+
+    localStorage.setItem('selectedItems', JSON.stringify(selectedItems));
+}
+
+function displayEmojis(selectedItems) {
+    emojis.innerHTML = selectedItems.map(item => {
+        console.log(item);
         return (`
-        <p>${result.dataset.code}</p>
+        <p>${item.text.dataset.code}</p>
         `);
     }).join('');
-    emojis.innerHTML = html;
 }
 
 function attachEventListenersToResults() {
     const results = suggestions.querySelectorAll('li a');
     results.forEach(result => {
-        result.addEventListener("click", addToCollection);
+        result.addEventListener("click", addItems);
     })
 }
 
 searchInput.addEventListener("keyup", displayMatches);
 searchInput.addEventListener("focusin", displayMatches);
 searchInput.addEventListener("blur", hideMatches);
+
+displayEmojis(selectedItems);
