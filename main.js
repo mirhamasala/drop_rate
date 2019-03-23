@@ -46,20 +46,17 @@ function hideMatches() {
     setTimeout(function(){ suggestions.classList.add("hide"); }, 200);
 }
 
-function addItems() {
-    const item = { text: this };
+function addItems(event) {
+    const item = event.currentTarget;
     selectedItems.push(item);
-
-    displayEmojis(selectedItems);
-
     localStorage.setItem('selectedItems', JSON.stringify(selectedItems));
+    displayEmojis(selectedItems);
 }
 
 function displayEmojis(selectedItems) {
     emojis.innerHTML = selectedItems.map(item => {
-        console.log(item);
         return (`
-        <p>${item.text.dataset.code}</p>
+        <p>${item.dataset.code}</p>
         `);
     }).join('');
 }
@@ -74,5 +71,4 @@ function attachEventListenersToResults() {
 searchInput.addEventListener("keyup", displayMatches);
 searchInput.addEventListener("focusin", displayMatches);
 searchInput.addEventListener("blur", hideMatches);
-
-displayEmojis(selectedItems);
+// document.addEventListener('DOMContentLoaded', displayEmojis(selectedItems));
