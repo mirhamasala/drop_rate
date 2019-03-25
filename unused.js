@@ -33,3 +33,13 @@ function hideMatches(e) {
 
 const body = document.body;
 body.addEventListener("click", hideMatches);
+
+
+// Local Storage
+const item = {
+    code: result.dataset.code
+}
+
+selectedItems.push(item);
+
+addItems();
