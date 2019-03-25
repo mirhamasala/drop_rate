@@ -41,7 +41,19 @@ Although, be careful with any API keys that have no domain restrictions. The gip
 
 ### Round 3
 - [ ] (Styling and presentation) You can also render the emoji itself in the dropdown suggestions, then when you’re showing it on the page it might be nice to have a white background for where you render the emoji’s and increase the font size a bit.
+
+![emoji_dropdown](emoji_dropdown.png)
+
 - [x] Localstorage
+
+Localstorage is a key/value store you have access to per domain. You can use JSON to store complex data in it.
+
+*To set:* `localStorage.setItem(<key>, JSON.stringify(<value>))`
+*To get:* `JSON.parse(localStorage.getItem(<key>))`
+
+The idea is that you back up your selected emojis to localstorage and that when you load the page, you load the collection back in from localstorage.
+
+The easiest way is to just turn your entire collection into JSON and push it back to a fixed key every time there is an update. Like the cookbook CSV from the Le Wagon challenges.
 
 ### Q & A
 *Q: I’m having a hard time getting the flow right, and knowing where to call which method, and how to pass it the arguments it needs.*
