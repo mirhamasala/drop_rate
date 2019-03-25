@@ -1,8 +1,8 @@
-const searchInput = document.querySelector('#search');
-const suggestions = document.querySelector('.suggestions');
-const emojis = document.querySelector('#ketomojis');
+const searchInput = document.querySelector("#search");
+const suggestions = document.querySelector(".suggestions");
+const emojis = document.querySelector("#ketomojis");
 const items = [];
-const selectedItems = JSON.parse(localStorage.getItem('selectedItems')) || [];
+const selectedItems = JSON.parse(localStorage.getItem("selectedItems")) || [];
 getResults();
 
 function getResults() {
@@ -14,26 +14,19 @@ function getResults() {
     })
 }
 
-function findMatches(itemToMatch, items) {
-    const regex = new RegExp(itemToMatch, "gi");
-    return items.filter(item => {
-        return item.name.match(regex);
-    })
-}
-
-function displayMatches() {
+function renderResults() {
     if (this.value === "") {
         hideMatches();
     } else {
-        suggestions.classList.remove("hide");
-        suggestions.innerHTML = renderResults(this.value);
-        attachEventListenersToResults();
+        displayMatches(this.value);
+        attachEventListenersToMatches();
     }
 }
 
-function renderResults(inputValue) {
+function displayMatches(inputValue) {
+    suggestions.classList.remove("hide");
     const matches = findMatches(inputValue, items);
-    return matches.map(item => {
+    suggestions.innerHTML = matches.map(item => {
         const regex = new RegExp(inputValue, "gi");
         const itemName = item.name.replace(regex, `<span class="highlight">${inputValue}</span>`);
         return (`
@@ -42,8 +35,22 @@ function renderResults(inputValue) {
     }).join('');
 }
 
+function findMatches(itemToMatch, items) {
+    const regex = new RegExp(itemToMatch, "gi");
+    return items.filter(item => {
+        return item.name.match(regex);
+    })
+}
+
 function hideMatches() {
     setTimeout(function(){ suggestions.classList.add("hide"); }, 200);
+}
+
+function attachEventListenersToMatches() {
+    const matches = suggestions.querySelectorAll("li a");
+    matches.forEach(match => {
+        match.addEventListener("click", addItems);
+    })
 }
 
 function addItems(event) {
@@ -65,14 +72,7 @@ function displayEmojis() {
     }).join('');
 }
 
-function attachEventListenersToResults() {
-    const results = suggestions.querySelectorAll("li a");
-    results.forEach(result => {
-        result.addEventListener("click", addItems);
-    })
-}
-
-searchInput.addEventListener("keyup", displayMatches);
-searchInput.addEventListener("focusin", displayMatches);
+searchInput.addEventListener("keyup", renderResults);
+searchInput.addEventListener("focusin", renderResults);
 searchInput.addEventListener("blur", hideMatches);
 document.addEventListener("DOMContentLoaded", displayEmojis);
