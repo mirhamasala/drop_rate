@@ -47,16 +47,20 @@ function hideMatches() {
 }
 
 function addItems(event) {
-    const item = event.currentTarget;
+    const item = event.currentTarget.dataset.code;
     selectedItems.push(item);
-    localStorage.setItem('selectedItems', JSON.stringify(selectedItems));
-    displayEmojis(selectedItems);
+    saveItems();
+    displayEmojis();
 }
 
-function displayEmojis(selectedItems) {
+function saveItems() {
+    localStorage.setItem('selectedItems', JSON.stringify(selectedItems));
+}
+
+function displayEmojis() {
     emojis.innerHTML = selectedItems.map(item => {
         return (`
-        <p>${item.dataset.code}</p>
+        <p>${item}</p>
         `);
     }).join('');
 }
@@ -71,4 +75,4 @@ function attachEventListenersToResults() {
 searchInput.addEventListener("keyup", displayMatches);
 searchInput.addEventListener("focusin", displayMatches);
 searchInput.addEventListener("blur", hideMatches);
-// document.addEventListener('DOMContentLoaded', displayEmojis(selectedItems));
+document.addEventListener('DOMContentLoaded', displayEmojis);
