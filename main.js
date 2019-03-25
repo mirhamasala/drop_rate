@@ -15,7 +15,7 @@ function getResults() {
 }
 
 function findMatches(itemToMatch, items) {
-    const regex = new RegExp(itemToMatch, 'gi');
+    const regex = new RegExp(itemToMatch, "gi");
     return items.filter(item => {
         return item.name.match(regex);
     })
@@ -34,7 +34,7 @@ function displayMatches() {
 function renderResults(inputValue) {
     const matches = findMatches(inputValue, items);
     return matches.map(item => {
-        const regex = new RegExp(inputValue, 'gi');
+        const regex = new RegExp(inputValue, "gi");
         const itemName = item.name.replace(regex, `<span class="highlight">${inputValue}</span>`);
         return (`
         <li><a href="#" data-code="${item.code}">${itemName}</a></li>
@@ -54,7 +54,7 @@ function addItems(event) {
 }
 
 function saveItems() {
-    localStorage.setItem('selectedItems', JSON.stringify(selectedItems));
+    localStorage.setItem("selectedItems", JSON.stringify(selectedItems));
 }
 
 function displayEmojis() {
@@ -66,7 +66,7 @@ function displayEmojis() {
 }
 
 function attachEventListenersToResults() {
-    const results = suggestions.querySelectorAll('li a');
+    const results = suggestions.querySelectorAll("li a");
     results.forEach(result => {
         result.addEventListener("click", addItems);
     })
@@ -75,4 +75,4 @@ function attachEventListenersToResults() {
 searchInput.addEventListener("keyup", displayMatches);
 searchInput.addEventListener("focusin", displayMatches);
 searchInput.addEventListener("blur", hideMatches);
-document.addEventListener('DOMContentLoaded', displayEmojis);
+document.addEventListener("DOMContentLoaded", displayEmojis);
