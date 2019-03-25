@@ -132,4 +132,5 @@ $("div").click(function(e) {
 - [An Introduction to Local Storage with JavaScript](https://www.youtube.com/watch?v=T9GWHFDcELQ)
 - [Please Stop Using Local Storage](https://dev.to/rdegges/please-stop-using-local-storage-1i04)
 - [Storing Objects in HTML5 localStorage](https://stackoverflow.com/questions/2010892/storing-objects-in-html5-localstorage)
+- [Web APIs: Persisting browser data with window.localStorage](https://egghead.io/lessons/javascript-web-apis-persisting-browser-data-with-window-localstorage)
 - [Window.localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)
